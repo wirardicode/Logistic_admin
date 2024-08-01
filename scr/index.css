@@ -1,0 +1,8 @@
+button{
+    height: 50px;
+    border-color: transparent;
+    background-color:rgb(8, 119, 122);
+}
+button:hover{
+    background-color:rgba(10, 104, 106, 0.769)
+}

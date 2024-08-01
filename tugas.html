@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Title</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <script type="module" src="handle.js"></script>
+  <!-- Bootstrap CSS v5.2.1 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+</head>
+
+<body>
+  <div class="header">
+    <div class="nav" style="background-color: rgb(216, 65, 65);">
+      <button class="btn btn-danger" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions"
+        aria-controls="offcanvasWithBothOptions">
+        << </button>
+
+          <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
+            aria-labelledby="offcanvasWithBothOptionsLabel">
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Backdrop with scrolling</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+              <a href="dashboard.html">Ruang Berita</a><br>
+              <a href="tugas.html">Surat Tugas</a><br>
+              <b>_________________________________</b><br>
+              <a href="index.html">Keluar</a>
+            </div>
+          </div>
+    </div>
+    <center>
+      <h1>Surat Tugas</h1>
+    </center>
+  </div>
+  <div class="body">
+    <form id="myForm">
+      <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="namaPenugas" name="namaPenugas" placeholder="nama penugas" required>
+        <label for="namaPenugas">Nama penugas</label>
+      </div>
+      <br>
+      <div class="form-floating">
+        <input type="text" class="form-control" id="penugassJabatan" name="penugassJabatan"
+          placeholder="jabatan penugas" required>
+        <label for="penugassJabatan">Jabatan penugas</label>
+      </div>
+      <br>
+      <div class="form-floating">
+        <input type="text" class="form-control" id="namaPetugas" name="namaPetugas" placeholder="nama petugas" required>
+        <label for="namaPetugas">Nama petugas</label>
+      </div>
+      <br>
+      <div class="form-floating">
+        <input type="text" class="form-control" id="jabatanPetugas" name="jabatanPetugas" placeholder="jabatan petugas" required>
+        <label for="jabatanPetugas">Jabatan petugas</label>
+      </div>
+      <br>
+      <div class="form-floating">
+        <input type="number" class="form-control" id="ktp" name="ktp" placeholder="id petugas" required>
+        <label for="ktp">ID petugas</label>
+      </div>
+      <br>
+      <div class="mb-3">
+        <label for="tugas" class="form-label"></label>
+        <textarea class="form-control" name="job" id="tugas" rows="3" placeholder="Tugas yang diberi" required></textarea>
+      </div>
+      <br>
+      <div class="form-floating">
+        <input type="date" class="form-control" id="date" name="date" placeholder="tanggal" required>
+        <label for="date">Tanggal</label>
+      </div>
+      <br>
+      <button type="submit" class="btn btn-primary">
+        Download and save
+      </button>
+    </form>
+  </div>
+
+  <!-- Bootstrap JavaScript Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+    integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+    crossorigin="anonymous"></script>
+</body>
+
+<script>
+  //script untuk menghubungan backend
+  document.getElementById('myForm').addEventListener('submit', async function (event) {
+    event.preventDefault();  // Mencegah submit form secara default
+
+    const formData = new FormData(event.target);
+
+    const data = {
+        namaPenugas: formData.get("namaPenugas"),
+        penugassJabatan: formData.get("penugassJabatan"),
+        namaPetugas: formData.get("namaPetugas"),
+        jabatanPetugas: formData.get("jabatanPetugas"),
+        ktp: formData.get("ktp"),
+        job: formData.get("job"),
+        date: formData.get("date")
+    };
+
+    // Kirim data ke endpoint /surat-tugas
+    let response = await fetch('http://127.0.0.1:8000/surat-tugas', {
+      method: 'POST',
+      body: formData
+    });
+
+    if (response.ok) {
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.style.display = 'none';
+      a.href = url;
+      a.download = 'surat_tugas.pdf';
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+    }
+  });
+
+</script>
+
+</html>
