@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surat Tugas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        header {
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        header p {
+            margin: 5px 0;
+        }
+
+        .main-content {
+            padding: 20px;
+        }
+
+        .main-content h2 {
+            text-align: center;
+            font-size: 20px;
+            text-decoration: underline;
+        }
+
+        .main-content p {
+            margin: 10px 0;
+        }
+
+        .editable {
+            font-weight: bold;
+            color: #000;
+        }
+
+        .signature {
+            text-align: right;
+            margin-top: 50px;
+        }
+
+        .signature p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>CV. LOGISTIC NGALOR NGIDUL</h1>
+            <p>TRANSPORTASI & LOGISTIK</p>
+            <p>JL. Ahmad Yani No.45 Telp 098-9987, Email: <a
+                    href="mailto:LogisticSemarang@gmail.com">LogisticSemarang@gmail.com</a></p>
+            <p>Semarang</p>
+        </header>
+
+        <section class="main-content">
+            <h2>SURAT TUGAS</h2>
+            <p style="text-align: center;">Nomor: DIG/ST/24</p>
+            <p>Yang bertanda tangan dibawah ini:</p>
+            <table>
+                <tr>
+                    <td>Nama</td>
+                    <td>: <span class="editable">{{ namaPenugas }}</span></td>
+                </tr>
+                <tr>
+                    <td>Jabatan</td>
+                    <td>: <span class="editable">{{ penugassJabatan }}</span></span></td>
+                </tr>
+            </table>
+            <p>Dengan ini menugaskan kepada:</p>
+            <table>
+                <tr>
+                    <td>Nama</td>
+                    <td>: <span class="editable">{{ namaPetugas }}</td>
+                </tr>
+                <tr>
+                    <td>Jabatan</td>
+                    <td>: <span class="editable">{{ jabatanPetugas }}</span></td>
+                </tr>
+                <tr>
+                    <td>ID</td>
+                    <td>: <span class="editable">{{ ktp }}</span></span></td>
+                </tr>
+            </table>
+
+            <p class="task"><span class="editable">{{ job }}</span>.</p>
+
+            <p>Demikian surat tugas ini dibuat dengan sebenarnya untuk dipergunakan sebagai mana mestinya.</p>
+
+            <div class="signature">
+                <p>Semarang, <span class="editable">{{ date }}</span> </p>
+                <p>CV. Logistic Ngalor Ngidul</p>
+                <img src="https://image.popmama.com/content-images/post/20240116/Tanda%20tangan%20L%20singkat-hhowJq21oumPHHyIQSmThHZYTS7q500m.jpg?width=600&height=315" style="height: 55px;" alt="">
+                <p>{{ penugassJabatan }}</p>
+            </div>
+        </section>
+    </div>
+</body>
+
+</html>
